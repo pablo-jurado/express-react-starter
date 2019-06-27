@@ -1,0 +1,9 @@
+.card-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: calc(50% - 10px);
+    margin: 5px;
+}

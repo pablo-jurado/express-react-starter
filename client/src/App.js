@@ -12,13 +12,39 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
+        <form>
+          <div className="form-group">
+            <label for="first-name">First Name</label>
+            <input className="form-control" id="first-name" name="first-name" type="text" />
+          </div>
+          <div className="form-group">
+            <label for="last-name">Last Name</label>
+            <input className="form-control" id="last-name" name="last-name" type="text" />
+          </div>
+          <div className="form-group">
+            <label for="email">Email</label>
+            <input className="form-control" type="email" id="email" name="email" type="text" />
+          </div>
+          <input className="btn btn-primary"type="submit" value="Add User" />
+        </form>
+        <hr/>
         <h1>Users</h1>
-        <ul>
+        <div className="card-wrapper">
         {this.state.users.map(user =>
-          <li key={user.id}>Name: {user.first_name} {user.last_name} | Email: {user.email}</li>
+          <div key={user.id} className="card">
+            <div className="card-body">
+              <h5 className="card-title">
+                <i className="fas fa-user"></i> Name: {user.first_name} {user.last_name}
+              </h5>
+              <p>
+                <i className="fas fa-envelope"></i> Email: {user.email}
+              </p>
+            </div>
+          </div>
+
           )}
-        </ul>
+        </div>
       </div>
     );
   }
