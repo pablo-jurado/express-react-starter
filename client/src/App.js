@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import './App.css';
 
 class App extends React.Component {
@@ -12,9 +13,10 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/users')
-      .then(res => res.json())
-      .then(users => this.setState({ users }));
+    axios.get('/users')
+      .then((response) => {
+          this.setState({ users: response.data })
+      });
   }
 
   handleFormChange = (e) => {
@@ -29,7 +31,12 @@ class App extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state.form);
+
+    axios.post('/add', {
+      firstName: this.state.form["first-name"],
+      lastName: this.state.form["last-name"],
+      email: this.state.form.email,
+    });
   }
 
   render() {
@@ -75,7 +82,7 @@ class App extends React.Component {
           <div key={user.id} className="card">
             <div className="card-body">
               <h5 className="card-title">
-                <i className="fas fa-user"></i> Name: {user.first_name} {user.last_name}
+                <i className="fas fa-user"></i> Name: {user["first-name"]} {user["last-name"]}
               </h5>
               <p>
                 <i className="fas fa-envelope"></i> Email: {user.email}

@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "first-name": "Umeko",
+    "last-name": "MacNeil",
+    "email": "umacneil0@i2i.jp"
+  },
+  {
+    "id": 2,
+    "first-name": "Twila",
+    "last-name": "Tonbridge",
+    "email": "ttonbridge1@pinterest.com"
+  },
+  {
+    "id": 3,
+    "first-name": "Lynda",
+    "last-name": "Saich",
+    "email": "lsaich2@tuttocitta.it"
+  },
+  {
+    "id": 4,
+    "first-name": "Dasya",
+    "last-name": "Schellig",
+    "email": "dschellig3@biblegateway.com"
+  },
+  {
+    "id": 5,
+    "first-name": "Marianna",
+    "last-name": "Buckoke",
+    "email": "mbuckoke4@amazon.com"
+  },
+  {
+    "id": 6,
+    "first-name": "Jasper",
+    "last-name": "Lawtie",
+    "email": "jlawtie5@opensource.org"
+  },
+  {
+    "id": 7,
+    "first-name": "Karol",
+    "last-name": "Avann",
+    "email": "kavann6@bbc.co.uk"
+  }
+]
