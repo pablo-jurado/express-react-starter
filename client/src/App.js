@@ -5,8 +5,8 @@ import './App.css';
 class App extends React.Component {
   state = {
     form: {
-      "first-name": "",
-      "last-name": "",
+      "firstName": "",
+      "lastName": "",
       "email": ""
     },
     users: []
@@ -33,8 +33,8 @@ class App extends React.Component {
     e.preventDefault();
 
     axios.post('/add', {
-      firstName: this.state.form["first-name"],
-      lastName: this.state.form["last-name"],
+      firstName: this.state.form.firstName,
+      lastName: this.state.form.lastName,
       email: this.state.form.email,
     });
   }
@@ -48,19 +48,19 @@ class App extends React.Component {
             <input
               className="form-control"
               id="first-name"
-              name="first-name"
+              name="firstName"
               type="text"
               onChange={this.handleFormChange}
-              value={this.state.form["first-name"]} />
+              value={this.state.form.firstName} />
           </div>
           <div className="form-group">
-            <label htmlFor="last-name">Last Name</label>
+            <label htmlFor="lastName">Last Name</label>
             <input className="form-control"
               id="last-name"
-              name="last-name"
+              name="lastName"
               type="text"
               onChange={this.handleFormChange}
-              value={this.state.form["last-name"]} />
+              value={this.state.form.lastName} />
           </div>
           <div className="form-group">
             <label htmlFor="email">Email</label>
@@ -82,7 +82,7 @@ class App extends React.Component {
           <div key={user.id} className="card">
             <div className="card-body">
               <h5 className="card-title">
-                <i className="fas fa-user"></i> Name: {user["first-name"]} {user["last-name"]}
+                <i className="fas fa-user"></i> Name: {user.firstName} {user.lastName}
               </h5>
               <p>
                 <i className="fas fa-envelope"></i> Email: {user.email}
