@@ -12,10 +12,17 @@ class App extends React.Component {
     users: []
   }
 
+  updateUsers = (users) => {
+    this.setState((state) => {
+      let newState = Object.assign({}, state);
+      return newState.users = users;
+    });
+  }
+
   componentDidMount() {
     axios.get('/users')
       .then((response) => {
-          this.setState({ users: response.data })
+        this.setState({ users: response.data })
       });
   }
 
@@ -31,11 +38,16 @@ class App extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    // TODO reset form
 
     axios.post('/add', {
       firstName: this.state.form.firstName,
       lastName: this.state.form.lastName,
       email: this.state.form.email,
+    }).then((response) => {
+      if (response.status === 200) {
+        this.updateUsers(response.data)
+      }
     });
   }
 
@@ -76,7 +88,7 @@ class App extends React.Component {
             value="Add User" />
         </form>
         <hr/>
-        <h1>Users</h1>
+        <h1>Number of users: {this.state.users.length}</h1>
         <div className="card-wrapper">
         {this.state.users.map(user =>
           <div key={user.id} className="card">
