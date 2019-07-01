@@ -12,13 +12,6 @@ class App extends React.Component {
     users: []
   }
 
-  updateUsers = (users) => {
-    this.setState((state) => {
-      let newState = Object.assign({}, state);
-      return newState.users = users;
-    });
-  }
-
   componentDidMount() {
     axios.get('/users')
       .then((response) => {
@@ -38,7 +31,11 @@ class App extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    // TODO reset form
+    const firstName = this.state.form.firstName;
+    const lastName = this.state.form.lastName;
+    const email = this.state.form.email;
+
+    if (firstName === "" || lastName === "" || email === "") return
 
     axios.post('/add', {
       firstName: this.state.form.firstName,
@@ -46,7 +43,14 @@ class App extends React.Component {
       email: this.state.form.email,
     }).then((response) => {
       if (response.status === 200) {
-        this.updateUsers(response.data)
+        this.setState({
+          users: response.data,
+          form: {
+            "firstName": "",
+            "lastName": "",
+            "email": ""
+          }
+        })
       }
     });
   }
