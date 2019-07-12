@@ -1,6 +1,6 @@
 import React from 'react';
 
-const UserCard = ({user, deleteUser}) => (
+const UserCard = ({user}) => (
     <div className="card">
         <div className="card-body">
             <h5 className="card-title">
@@ -9,10 +9,10 @@ const UserCard = ({user, deleteUser}) => (
             <p>
             <i className="fas fa-envelope"></i> Email: {user.email}
             </p>
-            <button className="btn btn-danger btn-sm float-right"
+            {/* <button className="btn btn-danger btn-sm float-right"
                 onClick={ () => {deleteUser(user.id)} }>
                 <i className="fas fa-trash"></i> Delete
-            </button>
+            </button> */}
         </div>
     </div>
 )
