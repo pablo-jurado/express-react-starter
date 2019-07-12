@@ -12,11 +12,18 @@ function addUser(newUser) {
   newUser.id = newID;
   users.push(newUser);
 
-  var json_users = JSON.stringify(users, null, 2);
+  return saveUsers(users);
+}
 
-  fs.writeFileSync(USERS_FILE, json_users, throwError);
-
+function saveUsers(users) {
+  var jsonUsers = JSON.stringify(users, null, 2);
+  fs.writeFileSync(USERS_FILE, jsonUsers, throwError);
   return getUsers();
+}
+
+function deleteUser(id) {
+  const updatedUsersList = getUsers().filter(user => user.id !== id);
+  return saveUsers(updatedUsersList);
 }
 
 function throwError(err) {
@@ -25,5 +32,6 @@ function throwError(err) {
 
 module.exports = {
     addUser,
-    getUsers
+    getUsers,
+    deleteUser
 };

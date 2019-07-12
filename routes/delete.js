@@ -1,17 +1,12 @@
 var express = require('express');
 var router = express.Router();
-var fs = require('fs');
-
+var data = require('../data/index');
 
 router.post('/', function(req, res) {
-  const response = {
-    error: null,
-    data: {
-      action: "delete",
-      id: req.body.id
-    }
-  };
-  res.json(response);
+  const id = req.body.id;
+  const updatedUserList = data.deleteUser(id);
+
+  res.json( {users: updatedUserList} );
 });
 
 module.exports = router;

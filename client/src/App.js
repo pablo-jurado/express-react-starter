@@ -60,7 +60,7 @@ class App extends React.Component {
     axios.post('/delete', {"id": id})
       .then((response) => {
         if (response.status === 200) {
-
+          this.setState({ users: response.data.users })
         } else {
           console.log('delete fail');
         }

@@ -1,12 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var fs = require('fs');
+var data = require('../data/index');
 
-var users = JSON.parse(fs.readFileSync('data/users.json'));
-
-/* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.json(users);
+  res.json(data.getUsers());
 });
 
 module.exports = router;
