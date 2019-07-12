@@ -56,6 +56,20 @@ class App extends React.Component {
     });
   }
 
+  deleteUser = (id) => {
+    axios.post('/delete', {"id": id})
+      .then((response) => {
+        if (response.status === 200) {
+
+        } else {
+          console.log('delete fail');
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   render() {
     return (
       <div className="container">
@@ -95,7 +109,7 @@ class App extends React.Component {
         <hr/>
         <h1>Number of users: {this.state.users.length}</h1>
         <div className="card-wrapper">
-        {this.state.users.map(user => <UserCard user={user} key={user.id}/>)}
+        {this.state.users.map(user => <UserCard user={user} key={user.id} deleteUser={this.deleteUser} />)}
         </div>
       </div>
     );
