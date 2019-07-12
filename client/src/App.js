@@ -43,7 +43,7 @@ class App extends React.Component {
       lastName: this.state.form.lastName,
       email: this.state.form.email,
     }).then((response) => {
-      if (response.status === 200) {
+      if (response.status === 200 && response.data) {
         this.setState({
           users: response.data,
           form: {
