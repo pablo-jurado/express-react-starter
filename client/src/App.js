@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import './App.css';
+import UserCard from './UserCard';
 
 class App extends React.Component {
   state = {
@@ -94,19 +95,7 @@ class App extends React.Component {
         <hr/>
         <h1>Number of users: {this.state.users.length}</h1>
         <div className="card-wrapper">
-        {this.state.users.map(user =>
-          <div key={user.id} className="card">
-            <div className="card-body">
-              <h5 className="card-title">
-                <i className="fas fa-user"></i> Name: {user.firstName} {user.lastName}
-              </h5>
-              <p>
-                <i className="fas fa-envelope"></i> Email: {user.email}
-              </p>
-            </div>
-          </div>
-
-          )}
+        {this.state.users.map(user => <UserCard user={user} key={user.id}/>)}
         </div>
       </div>
     );
