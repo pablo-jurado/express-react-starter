@@ -1,5 +1,5 @@
 var fs = require('fs');
-
+var utils = require('../utils');
 const USERS_FILE = 'data/users.json';
 
 function getUsers() {
@@ -7,9 +7,8 @@ function getUsers() {
 }
 
 function addUser(newUser) {
+  newUser.id = utils.uuid();
   var users = getUsers();
-  var newID = users[users.length - 1].id + 1;
-  newUser.id = newID;
   users.push(newUser);
 
   return saveUsers(users);
