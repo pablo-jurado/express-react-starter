@@ -45,7 +45,7 @@ class App extends React.Component {
           </ul>
         </nav>
         <Route path="/" exact render={()=> (<UserList users={this.state.users}/>)}  />
-        <Route path="/add/" render={()=> (<UserForm/>)} />
+        <Route path="/add/" render={(props)=> (<UserForm history={props.history}/>) } />
       </div>
     </Router>
   )
