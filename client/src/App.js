@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import UserForm from './components/UserForm';
 import UserList from './components/UserList';
-import AppRouter from './components/Router';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import axios from 'axios';
 
 class App extends React.Component {
@@ -32,10 +32,22 @@ class App extends React.Component {
   }
 
   render = () => (
-    <>
-      <AppRouter state={this.state} deleteUser={this.deleteUser} />
-      {/* <UserList users={this.state.users} deleteUser={this.deleteUser}/> */}
-    </>
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/add/">Add User</Link>
+            </li>
+          </ul>
+        </nav>
+        <Route path="/" exact render={()=> (<UserList users={this.state.users}/>)}  />
+        <Route path="/add/" render={()=> (<UserForm/>)} />
+      </div>
+    </Router>
   )
 }
 
