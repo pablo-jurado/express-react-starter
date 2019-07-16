@@ -11,6 +11,10 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    this.updateUsers();
+  }
+
+  updateUsers = () => {
     axios.get('/users')
       .then((response) => {
         this.setState({ users: response.data })
@@ -45,7 +49,7 @@ class App extends React.Component {
           </ul>
         </nav>
         <Route path="/" exact render={()=> (<UserList users={this.state.users}/>)}  />
-        <Route path="/add/" render={(props)=> (<UserForm history={props.history}/>) } />
+        <Route path="/add/" render={(props)=> (<UserForm history={props.history} updateUsers={this.updateUsers} />) } />
       </div>
     </Router>
   )
