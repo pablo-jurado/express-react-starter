@@ -1,3 +1,11 @@
+nav {
+    background-color: rgb(233, 245, 255);
+}
+nav li {
+    display: inline-block;
+    margin: 10px;
+}
+
 .card-wrapper {
     display: flex;
     flex-wrap: wrap;
