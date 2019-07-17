@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
 const UserCard = ({user}) => (
     <div className="card">
@@ -9,10 +10,7 @@ const UserCard = ({user}) => (
             <p>
             <i className="fas fa-envelope"></i> Email: {user.email}
             </p>
-            {/* <button className="btn btn-danger btn-sm float-right"
-                onClick={ () => {deleteUser(user.id)} }>
-                <i className="fas fa-trash"></i> Delete
-            </button> */}
+            <Link className="btn btn-secondary float-right" to={ `/user/${user.id}` }>Details</Link>
         </div>
     </div>
 )

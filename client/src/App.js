@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import UserForm from './components/UserForm';
 import UserList from './components/UserList';
+import User from './components/User';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import axios from 'axios';
 
@@ -50,6 +51,11 @@ class App extends React.Component {
         </nav>
         <Route path="/" exact render={()=> (<UserList users={this.state.users}/>)}  />
         <Route path="/add/" render={(props)=> (<UserForm history={props.history} updateUsers={this.updateUsers} />) } />
+        <Route path="/user/:id" render={(props) => {
+          const id = props.match.params.id;
+          const userData = this.state.users.find(user => user.id === id);
+          return <User user={ userData }/>
+        }} />
       </div>
     </Router>
   )
