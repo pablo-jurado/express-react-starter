@@ -5,12 +5,9 @@ const UserCard = ({user}) => (
     <div className="card">
         <div className="card-body">
             <h5 className="card-title">
-            <i className="fas fa-user"></i> Name: {user.firstName} {user.lastName}
+                <i className="fas fa-user"></i> {user.firstName}
             </h5>
-            <p>
-            <i className="fas fa-envelope"></i> Email: {user.email}
-            </p>
-            <Link className="btn btn-secondary float-right" to={ `/user/${user.id}` }>Details</Link>
+            <Link className="float-right"to={ `/user/${user.id}` }>More</Link>
         </div>
     </div>
 )

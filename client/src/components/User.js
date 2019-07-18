@@ -8,8 +8,15 @@ const User = ({user}) => {
             <div className="card">
                 <div className="card-body">
                     <h5 className="card-title">
-                        <i className="fas fa-user"></i> Name: {user.firstName} {user.lastName}
+                        User Information
                     </h5>
+                    <hr/>
+                    <p>
+                        <i class="fas fa-address-book"></i> First Name: {user.firstName}
+                    </p>
+                    <p>
+                        <i class="fas fa-address-book"></i> Last Name: {user.lastName}
+                    </p>
                     <p>
                         <i className="fas fa-envelope"></i> Email: {user.email}
                     </p>

@@ -12,8 +12,12 @@ nav li {
 }
 
 .card {
-    width: calc(50% - 10px);
+    width: 100%;
     margin: 5px;
+}
+
+.card-title {
+    display: inline-block;
 }
 
 .single-user .card {

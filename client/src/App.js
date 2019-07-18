@@ -49,13 +49,15 @@ class App extends React.Component {
             </li>
           </ul>
         </nav>
-        <Route path="/" exact render={()=> (<UserList users={this.state.users}/>)}  />
-        <Route path="/add/" render={(props)=> (<UserForm history={props.history} updateUsers={this.updateUsers} />) } />
-        <Route path="/user/:id" render={(props) => {
-          const id = props.match.params.id;
-          const userData = this.state.users.find(user => user.id === id);
-          return <User user={ userData }/>
-        }} />
+        <main className="container">
+          <Route path="/" exact render={()=> (<UserList users={this.state.users}/>)}  />
+          <Route path="/add/" render={(props)=> (<UserForm history={props.history} updateUsers={this.updateUsers} />) } />
+          <Route path="/user/:id" render={(props) => {
+            const id = props.match.params.id;
+            const userData = this.state.users.find(user => user.id === id);
+            return <User user={ userData }/>
+          }} />
+        </main>
       </div>
     </Router>
   )

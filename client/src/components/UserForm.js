@@ -58,41 +58,43 @@ class UserForm extends React.Component {
   
   render() {
     return (
-      <div className="container">
-        <form onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="first-name">First Name</label>
-            <input
-              className="form-control"
-              id="first-name"
-              name="firstName"
-              type="text"
-              onChange={this.handleFormChange}
-              value={this.state.form.firstName} />
-          </div>
-          <div className="form-group">
-            <label htmlFor="lastName">Last Name</label>
-            <input className="form-control"
-              id="last-name"
-              name="lastName"
-              type="text"
-              onChange={this.handleFormChange}
-              value={this.state.form.lastName} />
-          </div>
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input className="form-control"
-              id="email"
-              name="email"
-              type="email"
-              onChange={this.handleFormChange}
-              value={this.state.form.email} />
-          </div>
-          <input className="btn btn-primary"
-            type="submit"
-            value="Add User" />
-          <Link className="btn btn-danger ml-3" to="/">Cancel</Link>
-        </form>
+      <div className="row justify-content-center">
+        <div className="col-md-6 col-sm-12">
+          <form onSubmit={this.handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="first-name">First Name</label>
+              <input
+                className="form-control"
+                id="first-name"
+                name="firstName"
+                type="text"
+                onChange={this.handleFormChange}
+                value={this.state.form.firstName} />
+            </div>
+            <div className="form-group">
+              <label htmlFor="lastName">Last Name</label>
+              <input className="form-control"
+                id="last-name"
+                name="lastName"
+                type="text"
+                onChange={this.handleFormChange}
+                value={this.state.form.lastName} />
+            </div>
+            <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <input className="form-control"
+                id="email"
+                name="email"
+                type="email"
+                onChange={this.handleFormChange}
+                value={this.state.form.email} />
+            </div>
+            <input className="btn btn-primary"
+              type="submit"
+              value="Add User" />
+            <Link className="btn btn-danger ml-3" to="/">Cancel</Link>
+          </form>
+        </div>
       </div>
     );
   }
