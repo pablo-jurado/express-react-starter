@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link } from "react-router-dom";
 
-const User = ({user}) => {
+const User = ({user, deleteUser, history}) => {
     if (!user) return null;
     return (
         <div className="single-user">
@@ -12,23 +11,22 @@ const User = ({user}) => {
                     </h5>
                     <hr/>
                     <p>
-                        <i class="fas fa-address-book"></i> First Name: {user.firstName}
+                        <i className="fas fa-address-book"></i> First Name: {user.firstName}
                     </p>
                     <p>
-                        <i class="fas fa-address-book"></i> Last Name: {user.lastName}
+                        <i className="fas fa-address-book"></i> Last Name: {user.lastName}
                     </p>
                     <p>
                         <i className="fas fa-envelope"></i> Email: {user.email}
                     </p>
                     <div className="float-right">
                         <button className="btn btn-secondary">Edit</button>
-                        <button className="btn btn-danger ml-3">Delete</button>
+                        <button className="btn btn-danger ml-3" onClick={ () => {deleteUser(user.id, history) } }>Delete</button>
                     </div>
                 </div>
             </div>
         </div>
     );
 }
-
 
 export default User;

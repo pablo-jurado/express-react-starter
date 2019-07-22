@@ -4,9 +4,11 @@ var data = require('../data/index');
 
 router.post('/', function(req, res) {
   const id = req.body.id;
-  const updatedUserList = data.deleteUser(id);
+  if (id) {
+    const updatedUserList = data.deleteUser(id);
 
-  res.json( {users: updatedUserList} );
+    res.json( {users: updatedUserList} );
+  }
 });
 
 module.exports = router;

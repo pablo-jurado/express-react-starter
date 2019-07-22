@@ -18,15 +18,16 @@ class App extends React.Component {
   updateUsers = () => {
     axios.get('/users')
       .then((response) => {
-        this.setState({ users: response.data })
+        this.setState({ users: response.data });
       });
   }
 
-  deleteUser = (id) => {
+  deleteUser = (id, history) => {
     axios.post('/delete', {"id": id})
       .then((response) => {
         if (response.status === 200) {
-          this.setState({ users: response.data.users })
+          this.setState({ users: response.data.users });
+          history.push("/");
         } else {
           console.log('delete fail');
         }
@@ -55,7 +56,7 @@ class App extends React.Component {
           <Route path="/user/:id" render={(props) => {
             const id = props.match.params.id;
             const userData = this.state.users.find(user => user.id === id);
-            return <User user={ userData }/>
+            return <User user={ userData } history={props.history} deleteUser={ this.deleteUser }/>
           }} />
         </main>
       </div>
