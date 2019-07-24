@@ -16,7 +16,7 @@ class User extends React.Component {
         return (
             <div>
               {edit ? (
-                <EditUser user={ this.props.user } toggleEdit={ this.toggleEdit } />
+                <EditUser user={ this.props.user } toggleEdit={ this.toggleEdit }  history={ this.props.history } updateUsers={ this.props.updateUsers }  />
               ) : (
                 <UserInfo user={ this.props.user } history={ this.props.history } deleteUser={ this.props.deleteUser } toggleEdit={ this.toggleEdit }/>
               )}

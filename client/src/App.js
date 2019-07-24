@@ -56,7 +56,7 @@ class App extends React.Component {
           <Route path="/user/:id" render={(props) => {
             const id = props.match.params.id;
             const userData = this.state.users.find(user => user.id === id);
-            return <User user={ userData } history={props.history} deleteUser={ this.deleteUser }/>
+            return <User user={ userData } history={props.history} deleteUser={ this.deleteUser }  updateUsers={this.updateUsers} />
           }} />
         </main>
       </div>

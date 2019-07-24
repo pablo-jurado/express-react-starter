@@ -25,6 +25,15 @@ function deleteUser(id) {
   return saveUsers(updatedUsersList);
 }
 
+function updateUser(user) {
+  const usersList = getUsers();
+  const userIndex = usersList.findIndex(u => u.id === user.id);
+
+  usersList[userIndex] = user;
+
+  return saveUsers(usersList);
+}
+
 function throwError(err) {
   if (err) throw new Error(err);
 }
@@ -32,5 +41,6 @@ function throwError(err) {
 module.exports = {
     addUser,
     getUsers,
-    deleteUser
+    deleteUser,
+    updateUser
 };

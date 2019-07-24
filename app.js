@@ -7,6 +7,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var addRouter = require('./routes/add');
 var deleteRouter = require('./routes/delete');
+var updateRouter = require('./routes/update');
 
 var app = express();
 
@@ -22,5 +23,6 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/add', addRouter);
 app.use('/delete', deleteRouter);
+app.use('/update', updateRouter);
 
 module.exports = app;
