@@ -12,10 +12,10 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.updateUsers();
+    this.getUsers();
   }
 
-  updateUsers = () => {
+  getUsers = () => {
     axios.get('/users')
       .then((response) => {
         this.setState({ users: response.data });
@@ -37,6 +37,29 @@ class App extends React.Component {
       });
   }
 
+  updateUser = (user, history) => {
+    axios.post('/update', {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      id: user.id
+    }).then((response) => {
+        if (response.status === 200 && response.data) {
+            this.setState({
+                users: response.data,
+                form: {
+                    "firstName": "",
+                    "lastName": "",
+                    "email": ""
+                }
+            })
+
+            this.getUsers();
+            history.push("/");
+        }
+    });
+  }
+
   render = () => (
     <Router>
       <div>
@@ -52,11 +75,11 @@ class App extends React.Component {
         </nav>
         <main className="container">
           <Route path="/" exact render={()=> (<UserList users={this.state.users}/>)}  />
-          <Route path="/add/" render={(props)=> (<UserForm history={props.history} updateUsers={this.updateUsers} />) } />
+          <Route path="/add/" render={(props)=> (<UserForm history={props.history} getUsers={this.getUsers} />) } />
           <Route path="/user/:id" render={(props) => {
             const id = props.match.params.id;
             const userData = this.state.users.find(user => user.id === id);
-            return <User user={ userData } history={props.history} deleteUser={ this.deleteUser }  updateUsers={this.updateUsers} />
+            return <User user={userData} history={props.history} deleteUser={this.deleteUser} updateUser={this.updateUser} getUsers={this.getUsers} />
           }} />
         </main>
       </div>

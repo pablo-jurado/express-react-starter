@@ -12,8 +12,7 @@ class EditUser extends React.Component {
     }
 
     handleFormChange = (e) => {
-        const value = e.target.value;
-        const name = e.target.name;
+        const {value, name} = e.target;
 
         this.setState((state) => {
           let newState = Object.assign({}, state);
@@ -23,32 +22,11 @@ class EditUser extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const firstName = this.state.form.firstName;
-        const lastName = this.state.form.lastName;
-        const email = this.state.form.email;
-        const id = this.state.form.id;
+        const {firstName, lastName, email, id} = this.state.form;
 
         if (firstName === "" || lastName === "" || email === "") return
 
-        axios.post('/update', {
-          firstName: firstName,
-          lastName: lastName,
-          email: email,
-          id: id
-        }).then((response) => {
-            if (response.status === 200 && response.data) {
-                this.setState({
-                    users: response.data,
-                    form: {
-                        "firstName": "",
-                        "lastName": "",
-                        "email": ""
-                    }
-                })
-                this.props.updateUsers();
-                this.props.history.push("/");
-            }
-        });
+        this.props.updateUser({ firstName, lastName, email, id }, this.props.history);
      }
 
     render() {

@@ -50,7 +50,7 @@ class UserForm extends React.Component {
             "email": ""
           }
         })
-        this.props.updateUsers();
+        this.props.getUsers();
         this.props.history.push("/");
       }
     });
