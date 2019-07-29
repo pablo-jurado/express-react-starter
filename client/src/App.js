@@ -22,11 +22,24 @@ class App extends React.Component {
       });
   }
 
+  addUser = (user, history) => {
+    axios.post('/add', {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+    }).then((response) => {
+      if (response.status === 200 && response.data) {
+        this.getUsers();
+        history.push("/");
+      }
+    });
+  }
+
   deleteUser = (id, history) => {
     axios.post('/delete', {"id": id})
       .then((response) => {
         if (response.status === 200) {
-          this.setState({ users: response.data.users });
+          this.getUsers();
           history.push("/");
         } else {
           console.log('delete fail');
@@ -45,15 +58,6 @@ class App extends React.Component {
       id: user.id
     }).then((response) => {
         if (response.status === 200 && response.data) {
-            this.setState({
-                users: response.data,
-                form: {
-                    "firstName": "",
-                    "lastName": "",
-                    "email": ""
-                }
-            })
-
             this.getUsers();
             history.push("/");
         }
@@ -75,11 +79,11 @@ class App extends React.Component {
         </nav>
         <main className="container">
           <Route path="/" exact render={()=> (<UserList users={this.state.users}/>)}  />
-          <Route path="/add/" render={(props)=> (<UserForm history={props.history} getUsers={this.getUsers} />) } />
+          <Route path="/add/" render={(props)=> (<UserForm history={props.history} addUser={this.addUser} />) } />
           <Route path="/user/:id" render={(props) => {
             const id = props.match.params.id;
             const userData = this.state.users.find(user => user.id === id);
-            return <User user={userData} history={props.history} deleteUser={this.deleteUser} updateUser={this.updateUser} getUsers={this.getUsers} />
+            return <User user={userData} history={props.history} deleteUser={this.deleteUser} updateUser={this.updateUser} />
           }} />
         </main>
       </div>

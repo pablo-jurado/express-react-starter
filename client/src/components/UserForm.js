@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import { Link } from "react-router-dom";
 
 class UserForm extends React.Component {
@@ -11,16 +10,8 @@ class UserForm extends React.Component {
     },
   }
   
-  componentDidMount() {
-    axios.get('/users')
-      .then((response) => {
-        this.setState({ users: response.data })
-      });
-  }
-
   handleFormChange = (e) => {
-    const value = e.target.value;
-    const name = e.target.name;
+    const {value, name} = e.target;
 
     this.setState((state) => {
       let newState = Object.assign({}, state);
@@ -30,30 +21,19 @@ class UserForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const firstName = this.state.form.firstName;
-    const lastName = this.state.form.lastName;
-    const email = this.state.form.email;
+    const {firstName, lastName, email} = this.state.form;
 
     if (firstName === "" || lastName === "" || email === "") return
 
-    axios.post('/add', {
-      firstName: this.state.form.firstName,
-      lastName: this.state.form.lastName,
-      email: this.state.form.email,
-    }).then((response) => {
-      if (response.status === 200 && response.data) {
-        this.setState({
-          users: response.data,
-          form: {
-            "firstName": "",
-            "lastName": "",
-            "email": ""
-          }
-        })
-        this.props.getUsers();
-        this.props.history.push("/");
+    this.props.addUser({ firstName, lastName, email }, this.props.history);
+
+    this.setState({
+      form: {
+          "firstName": "",
+          "lastName": "",
+          "email": "",
       }
-    });
+    })
   }
   
   render() {
